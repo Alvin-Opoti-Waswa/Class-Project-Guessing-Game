@@ -1,0 +1,2 @@
+def random():
+  24
