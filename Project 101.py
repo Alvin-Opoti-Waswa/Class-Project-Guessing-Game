@@ -1,5 +1,7 @@
 import random from helper_file_random 
+
 correct_number = random.randint(1, 100)
+
 def my_guessing_game():
     trials = 5
     print("All you have to do is guess correctly the number that I picked between 1 and 100 but you only have 5 tries...BEGIN")
