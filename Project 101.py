@@ -1,6 +1,8 @@
-import random from helper_file_random 
+import random
 
-correct_number = random.randint(1, 100)
+correct_number = random.randint(1, 10)
+
+print("Welcome to the guessing game!")
 
 def my_guessing_game():
     trials = 5
@@ -17,6 +19,9 @@ def my_guessing_game():
                 print(f"You have {trials} {'trials' if trials > 1 else 'try'} remaining.")
     if trials == 0:
         print(f"Sadly, you run out of trials.The correct number was {correct_number}.")
+
+
+my_guessing_game()
 
 
 
