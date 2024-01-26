@@ -1,41 +1,41 @@
 import random
 
-correct_number = random.randint(1, 100)
+class GuessingGame:
+    def __init__(self, name, max_attempts=3):
+        self.name = name
+        self.max_attempts = max_attempts
+        self.secret_number = random.randint(1, 10)
+        self.attempts = 0
+        self.correct_guess = False
 
-print("Welcome to the guessing game!")
+    def play_game(self):
+        print(f"Welcome, {self.name}! I have selected a number between 1 and 10. Can you guess it?")
 
-def my_guessing_game():
+        while self.attempts < self.max_attempts:
+            guess = int(input("Enter your guess: "))
+            self.attempts += 1
 
-    trials = 5
-
-    game_running = True
-  
-    player_info = {'name': '', 'trials': 0, 'correct_number': False}
-  
-    player_info['name'] = input("Enter your name: ")
-  
-    print(f"Hi, {player_info['name']}! I have selected a number between 1 and 100. Can you guess it?")
-
-    while game_running:
-        trial = int(input("Enter your attempt: "))
-        if trial == correct_number:
-            print(f"Congratulations, {player_info['name']}! You guessed the correct number.")
-            player_info['correct_number'] = True
-            break
-        else:
-            print("Incorrect guess. Try again.")
-            trials -= 1
-            player_info['trials'] += 1
-            if trials > 0:
-                print(f"You have {trials} {'attempts' if trials > 1 else 'trials'} remaining.")
-            else:
-                print(f"Sorry, {player_info['name']}, you've run out of trials. The correct number was {correct_number}.")
+            if guess == self.secret_number:
+                print(f"Congratulations, {self.name}! You guessed the correct number.")
+                self.correct_guess = True
                 break
+            else:
+                print("Incorrect guess. Try again.")
+                remaining_attempts = self.max_attempts - self.attempts
+                print(f"You have {remaining_attempts} {'attempts' if remaining_attempts > 1 else 'attempt'} remaining.")
 
-    
-    print("\nPlayer Information:")
-    print(f"Name: {player_info['name']}")
-    print(f"Attempts: {player_info['trials']}")
-    print("Game Status: " + ("Win" if player_info['correct_number'] else "Loss"))
+        if not self.correct_guess:
+            print(f"Sorry, {self.name}, you've run out of attempts. The correct number was {self.secret_number}.")
 
-my_guessing_game()
+    def display_player_info(self):
+        print("\nPlayer Information:")
+        print(f"Name: {self.name}")
+        print(f"Attempts: {self.attempts}")
+        print("Game Status: " + ("Win" if self.correct_guess else "Loss"))
+
+
+
+player_name = input("Enter your name: ")
+game_instance = GuessingGame(name=player_name)
+game_instance.play_game()
+game_instance.display_player_info()
